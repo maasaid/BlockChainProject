@@ -34,5 +34,29 @@ contract CertificationNFT is ERC721URIStorage {
             bytes(certificates[_ipfs_hash].ipfs_hash).length == 0,
             "Certificate with this IPFS hash already exists"
         );
+        // Create the certificate
+        Certificate memory cert = Certificate({
+            uid: _uid,
+            candidate_name: _candidate_name,
+            speciality: _speciality,
+            school_name: _school_name,
+            ipfs_hash: _ipfs_hash
+        });
+
+        certificates[_ipfs_hash] = cert;
+
+        emit CertificateMinted(
+            _ipfs_hash,
+            _candidate_name,
+            _speciality,
+            _school_name
+        );
+
+        return _ipfs_hash;
+    }
+
+    // Check if a certificate exists with IPFS hash
+    function isVerified(string memory _ipfs_hash) public view returns (bool) {
+        return bytes(certificates[_ipfs_hash].ipfs_hash).length != 0;
     }
 }
