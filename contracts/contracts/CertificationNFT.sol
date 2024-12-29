@@ -30,10 +30,8 @@ contract CertificationNFT is ERC721URIStorage {
         string memory _school_name,
         string memory _ipfs_hash
     ) public returns (string memory) {
-        require(
-            bytes(certificates[_ipfs_hash].ipfs_hash).length == 0,
-            "Certificate with this IPFS hash already exists"
-        );
+        require(bytes(certificates[_ipfs_hash].ipfs_hash).length == 0, "Certificate with this IPFS hash already exists");
+
         // Create the certificate
         Certificate memory cert = Certificate({
             uid: _uid,
@@ -54,6 +52,7 @@ contract CertificationNFT is ERC721URIStorage {
 
         return _ipfs_hash;
     }
+
 
     // Check if a certificate exists with IPFS hash
     function isVerified(string memory _ipfs_hash) public view returns (bool) {

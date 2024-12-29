@@ -1,2 +1,4 @@
 \node_modules
 deployment_config.json
+\build
+\venv
