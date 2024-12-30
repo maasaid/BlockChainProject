@@ -12,7 +12,7 @@ The system comprises of 2 main entities:
 ## Features
 
 - **Smart Contract:** Utilizes a Solidity smart contract to manage and store certificate details on the Ethereum blockchain.
-- **IPFS Integration:** Stores certificate PDFs on IPFS via Pinata for decentralized and secure file storage.
+- **IPFS Integration:** Stores certificate PDFs on IPFS via IPFS Desktop for decentralized and secure file storage.
 - **Streamlit App:** Provides a user-friendly interface for generating and verifying certificates.
 
 ---
