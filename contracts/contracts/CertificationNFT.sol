@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.21;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
@@ -34,6 +34,7 @@ contract CertificationNFT is ERC721URIStorage {
             bytes(certificates[_ipfs_hash].ipfs_hash).length == 0,
             "Certificate with this IPFS hash already exists"
         );
+
         // Create the certificate
         Certificate memory cert = Certificate({
             uid: _uid,

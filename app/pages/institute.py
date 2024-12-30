@@ -51,7 +51,7 @@ if submit and pdf:
     local_file_path = os.path.join("uploaded_files", pdf.name)
 
     pdf_content = pdf.getvalue()
-    pdf_name = "C:\\Users\dardo\PycharmProjects\\blockchain\\app\pages\School_internship_agreement_253826.pdf"
+    pdf_name = "C:\\Users\\said maaro\\Desktop\\BlockChainProject\\app\\pages\\School_internship_agreement_253826.pdf"
     # Upload the PDF to Pinata
     ipfs_hash = upload_to_ipfs(pdf_name, pdf_content)
     data_to_hash = f"{candidate_name}{speciality}{school_name}".encode('utf-8')

@@ -1,18 +1,28 @@
-let Certification = artifacts.require("./CertificationNFT.sol");
-const fs = require('fs');
+const Certification = artifacts.require("CertificationNFT");
+const fs = require("fs");
 
-module.exports = async function (deployer) {
-  await deployer.deploy(Certification);
-  const deployedCertification = await Certification.deployed();
+module.exports = async function (deployer, network, accounts) {
+  try {
+    console.log("Starting deployment...");
+    console.log(`Deploying to network: ${network}`);
+    console.log(`Using account: ${accounts[0]}`);
 
-  // Always start with an empty object for configData
-  let configData = {};
+    // Deploy contract
+    await deployer.deploy(Certification);
+    const deployedCertification = await Certification.deployed();
+    console.log(`Deployed CertificationNFT at: ${deployedCertification.address}`);
 
-  // Update or add the contract address
-  configData.Certification = deployedCertification.address;
+    // Save deployment address to a JSON file
+    const configData = {
+      network,
+      Certification: deployedCertification.address,
+    };
+    const filePath = "./deployment_config.json";
 
-  // Save the updated configuration back to the file
-  fs.writeFileSync('./deployment_config.json', JSON.stringify(configData, null, 2));
-
-  console.log(`Certification contract deployed at address: ${deployedCertification.address}`);
+    fs.writeFileSync(filePath, JSON.stringify(configData, null, 2));
+    console.log(`Deployment address saved to: ${filePath}`);
+  } catch (error) {
+    console.error("Deployment failed:", error.message);
+    console.error("Stack trace:", error.stack);
+  }
 };
